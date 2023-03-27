@@ -9,3 +9,5 @@ ALX  Low Level Programming
 0x03. C - Debugging -- Working with gdb ,finding and fixing errors. 
 
 0x04. C - More functions, more nested loops -- working with C -Functions ,Functions prototype.
+
+0x05. C - Pointers, arrays and strings -- W=working with Pointers, arrays and strings.
