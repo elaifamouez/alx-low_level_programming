@@ -10,4 +10,6 @@ ALX  Low Level Programming
 
 0x04. C - More functions, more nested loops -- working with C -Functions ,Functions prototype.
 
-0x05. C - Pointers, arrays and strings -- W=working with Pointers, arrays and strings.
+0x05. C - Pointers, arrays and strings -- Working with Pointers, arrays and strings.
+
+0x06. C - More pointers, arrays and strings -- Working with Pointers, strings. 
