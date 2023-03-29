@@ -8,7 +8,8 @@
  */
 char *cap_string(char *str)
 {
-int i, j, len;
+int i, len;
+size_t j;
 int capitalize_next = 1;
 char separators[] = {' ', '\t', '\n', ',', ';', '.', '!', '?', '"', '(', ')', '{', '}'};
 
@@ -19,7 +20,7 @@ len++;
 }
 for (i = 0; i < len; i++)
 {
-for (j = 0; j < (int)sizeof(separators); j++)
+for (j = 0; j < 13; j++)
 {
 if (str[i] == separators[j])
 {
