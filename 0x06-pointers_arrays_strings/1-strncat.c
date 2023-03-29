@@ -10,20 +10,19 @@
  */
 char *_strncat(char *dest, char *src, int n)
 {
-char *ptr = dest;
-int i = 0;  
+char *p = dest;
+int dest_len = 0;
+int i = 0;
 
-while (*ptr != '\0')
+while (*p != '\0')
 {
-ptr++;
-}  
-while ((*src != '\0') && (i < n))
-{
-*ptr = *src;
-ptr++;
-src++;
+dest_len++;
+p++;
+}
+while (i < n && src[i] != '\0') {
+dest[dest_len + i] = src[i];
 i++;
 }
-*ptr = '\0';
+dest[dest_len + i] = '\0';
 return (dest);
 }
