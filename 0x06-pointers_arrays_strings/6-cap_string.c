@@ -9,26 +9,21 @@
 char *cap_string(char *str)
 {
 int i, j;
-int capitalize_next = 1;
-char separators[] = {' ', '\t', '\n', ',', ';', '.', '!', '?', '"', '(', ')', '{', '}'};
+char spe[13] = {' ', '\t', '\n', ',', ';', '.','!', '?', '"', '(', ')', '{', '}'};
 
 for (i = 0; str[i] != '\0'; i++)
 {
+if (i == 0 && str[i] >= 'a' && str[i] <= 'z')
+str[i] -= 32;
 for (j = 0; j < 13; j++)
 {
-if (str[i] == separators[j])
+if (str[i] == spe[j])
 {
-capitalize_next = 1;
-break;
+if (str[i + 1] >= 'a' && str[i + 1] <= 'z')
+{
+str[i + 1] -= 32;
 }
 }
-if (capitalize_next)
-{
-if (str[i] >= 'a' && str[i] <= 'z')
-{
-str[i] = str[i] - 'a' + 'A';
-}
-capitalize_next = 0;
 }
 }
 return (str);
