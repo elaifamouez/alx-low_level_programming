@@ -19,7 +19,7 @@ len++;
 }
 for (i = 0; i < len; i++)
 {
-for (j = 0; j < (int)sizeof(separators); j++) 
+for (j = 0; j < (int)sizeof(separators); j++)
 {
 if (str[i] == separators[j])
 {
