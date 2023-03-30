@@ -8,26 +8,32 @@
  */
 void print_number(int n)
 {
-int absolute_value, digit, digit_count;
+unsigned int m, d, count;
 
 if (n < 0)
 {
-_putchar('-');
-absolute_value = -n;
+_putchar(45);
+m = n * -1;
 }
 else
 {
-absolute_value = n;
+m = n;
 }
-digit = absolute_value;
-digit_count = 1;
-while (digit > 9)
+d = m;
+count = 1;
+while (d > 9)
 {
-digit /= 10;
-digit_count *= 10;
+d /= 10;
+count *= 10;
 }
-for (;digit_count >= 1; digit_count /= 10)
+count = 1;
+while (count <= m / 10)
 {
-_putchar(((absolute_value / digit_count) % 10) + 48);
+count *= 10;
+}
+while (count > 0)
+{
+_putchar(((m / count) % 10) + '0');
+count /= 10;
 }
 }
