@@ -26,7 +26,7 @@ while (digit > 9)
 digit /= 10;
 digit_count *= 10;
 }
-for (; digit_count >= 1; digit_count /= 10)
+for (;digit_count >= 1; digit_count /= 10)
 {
 _putchar(((absolute_value / digit_count) % 10) + 48);
 }
