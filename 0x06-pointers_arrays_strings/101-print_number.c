@@ -10,7 +10,6 @@ void print_number(int n)
 {
 int absolute_value, digit, digit_count;
 
-
 if (n < 0)
 {
 _putchar('-');
