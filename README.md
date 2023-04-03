@@ -12,4 +12,6 @@ ALX  Low Level Programming
 
 0x05. C - Pointers, arrays and strings -- Working with Pointers, arrays and strings.
 
-0x06. C - More pointers, arrays and strings -- Working with Pointers, strings. 
+0x06. C - More pointers, arrays and strings -- Working with Pointers, strings.
+
+0x07. C - Even more pointers, arrays and strings -- Working C - Pointer to Pointer, Multi-dimensional Arrays in C. 
