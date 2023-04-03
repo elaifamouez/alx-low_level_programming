@@ -16,12 +16,5 @@ while (*s != '\0' && *s != c)
 {
 s++;
 }
-if (*s == c)
-{
-return (s);
-}
-else
-{
-return (NULL);
-}
+return (*s == c) ? s : NULL;
 }
