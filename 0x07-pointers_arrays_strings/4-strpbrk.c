@@ -18,9 +18,7 @@ for (; *s != '\0'; s++)
 for (a = accept; *a != '\0'; a++)
 {
 if (*s == *a)
-{
 return ((char*)s);
-}
 }
 }
 return (NULL);
