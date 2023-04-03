@@ -16,5 +16,6 @@ for (i = 0, j = size - 1; i < size; i++, j--)
 sum1 += a[i*size + i];
 sum2 += a[i*size + j];
 }
+
 printf("%d, %d\n", sum1, sum2);
 }
