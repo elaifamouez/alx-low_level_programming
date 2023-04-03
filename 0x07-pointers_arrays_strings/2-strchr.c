@@ -13,5 +13,5 @@ while (*s != '\0' && *s != c)
 {
 s++;
 }
-return (*s == c) ? (char*)s : '\0';
+return ((*s == c) ? (char*)s : '\0');
 }
