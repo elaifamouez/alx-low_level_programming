@@ -2,11 +2,12 @@
 #define NULL 0
 
 /**
- * _strchr - locates a character in a string.
- * @s: string.
- * @c: character.
+ * _strchr - Locates a character in a string.
+ * @s: The string to be searched.
+ * @c: The character to be located.
  *
- * Return: the pointer to the first occurrence of the character c.
+ * Return: If c is found - a pointer to the first occurence.
+ *         If c is not found - NULL.
  */
 char *_strchr(char *s, char c)
 {
@@ -17,7 +18,7 @@ s++;
 }
 if (*s == c)
 {
-return ((char*)s);
+return (s);
 }
 else
 {
