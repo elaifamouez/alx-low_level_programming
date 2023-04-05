@@ -20,5 +20,5 @@ return (i * i > n ? -1 : i * i == n ? i : _sqrt_check(n, i + 1));
  */
 int _sqrt_recursion(int n)
 {
-return ( n < 0 ? -1 : _sqrt_check(n, 0));
+return (n < 0 ? -1 : _sqrt_check(n, 0));
 }
