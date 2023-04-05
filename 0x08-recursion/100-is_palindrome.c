@@ -13,8 +13,8 @@ return (*s == '\0' ? 0 : (_strlen_recursion(s + 1) + 1));
 /**
  * _is_palindrome - Helper function for is_palindrome.
  * @s: The string to be checked.
- * @start: The index of the first character to check.
- * @end: The index of the last character to check.
+ * @b: The index of the first character to check.
+ * @e: The index of the last character to check.
  *
  * Return: If the substring is a palindrome - 1.
  *         If the substring is not a palindrome - 0.
