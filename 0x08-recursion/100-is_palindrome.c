@@ -19,9 +19,9 @@ return (*s == '\0' ? 0 : (_strlen_recursion(s + 1) + 1));
  * Return: If the substring is a palindrome - 1.
  *         If the substring is not a palindrome - 0.
  */
-int _is_palindrome(char *s, int start, int end)
+int _is_palindrome(char *s, int b, int e)
 {
-return (start >= end ? 1 : s[start] != s[end] ? 0 : _is_palindrome(s, start + 1, end - 1));
+return (b >= e ? 1 : s[b] != s[e] ? 0 : _is_palindrome(s, b + 1, e - 1));
 }
 /**
  * is_palindrome - Checks if a string is a palindrome.
