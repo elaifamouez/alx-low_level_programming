@@ -10,7 +10,7 @@
  */
 int _check_div(int n, int i)
 {
-return (n % i == 0 ? 0 : i == n / 2 ? 1 : _check_div(n, i + 1));	
+return (n % i == 0 ? 0 : i == n / 2 ? 1 : _check_div(n, i + 1));
 }
 /**
  * is_prime_number - Checks if a number is prime.
