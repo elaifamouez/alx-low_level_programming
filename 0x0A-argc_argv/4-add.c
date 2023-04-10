@@ -28,5 +28,6 @@ arg++;
 }
 sum += atoi(argv[i]);
 }
-return (sum ? printf("%d\n", sum) : printf("0\n"));
+printf("%d\n", sum);
+return (0);
 }
