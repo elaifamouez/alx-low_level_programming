@@ -16,4 +16,6 @@ ALX  Low Level Programming
 
 0x07. C - Even more pointers, arrays and strings -- Working C - Pointer to Pointer, Multi-dimensional Arrays in C.
 
-0x08. C - Recursion -- Working with recursion. 
+0x08. C - Recursion -- Working with recursion.
+
+0x09. C - Static libraries -- Working with C static and Dynamic libraries. 
