@@ -18,4 +18,6 @@ ALX  Low Level Programming
 
 0x08. C - Recursion -- Working with recursion.
 
-0x09. C - Static libraries -- Working with C static and Dynamic libraries. 
+0x09. C - Static libraries -- Working with C static and Dynamic libraries.
+
+0x0A. C - argc, argv -- Working with argc, argv. 
