@@ -3,18 +3,18 @@
 /**
  * _puts - prints passed string to stdout.
  *
- * @str: String to print.
+ * @s: String to print.
  */
-void _puts(char *str)
+void _puts(char *s)
 {
 int i = 0;
-char c = str[0];
+char c = s[0];
 
 while (c != '\0')
 {
 _putchar(c);
 i++;
-c = str[i];
+c = s[i];
 }
 _putchar('\n');
 }
