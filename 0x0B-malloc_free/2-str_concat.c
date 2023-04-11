@@ -26,6 +26,6 @@ s3 = ch;
 while (*s1)
 *s3++ = *s1++;
 while ((*s3++ = *s2++))
-     ;
+;
 return (ch);
 }
