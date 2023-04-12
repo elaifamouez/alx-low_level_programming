@@ -15,14 +15,11 @@ char *s;
 
 if (ac == 0 || av == NULL)
 return (NULL);
-for (i = 0, j = 0, l = 0; i < ac && av[i]; j++, l = (j == 0 ? l : l + 1))
+l = 0;
+for (i = 0; i < ac; i++)
 {
-if (av[i][j] == '\0')
-{
-i++;
-j = -1;
-continue;
-}
+for (j = 0; av[i][j] != '\0'; j++)
+l++;
 l++;
 }
 s = malloc((l + 1) * sizeof(char));
