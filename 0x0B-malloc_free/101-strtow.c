@@ -1,98 +1,83 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
- * count_words - counts the number of words in a string
- * @str: the input string
- * Return: the number of words in the string
+ * word_count - Count the number of words in a string.
+ * @str: The string to count words in.
+ *
+ * Return: The number of words in the string.
  */
-int count_words(char *str)
+static int word_count(char *str)
 {
-int count = 0;
-int in_word = 0;
-char *p = str;
+    int count = 0, in_word = 0;
 
-while (*p != '\0')
-{
-if (*p == ' ')
-{
-in_word = 0;
-}
-else if (!in_word)
-{
-count++;
-in_word = 1;
-}
-p++;
-}
-return (count);
-}
-/**
- * copy_word - copies a word from a string into a new array
- * @start: a pointer to the start of the word
- * @end: a pointer to the end of the word
- * Return: a new array containing the copied word
- */
-char *copy_word(char *start, char *end)
-{
-int len = end - start, i;
-char *word = malloc((len + 1) * sizeof(char));
+    while (*str)
+    {
+        if (*str == ' ')
+            in_word = 0;
+        else if (!in_word)
+        {
+            in_word = 1;
+            count++;
+        }
+        str++;
+    }
 
-if (!word)
-return NULL;
-for (i = 0; i < len; i++)
-word[i] = start[i];
-word[len] = '\0';
-return (word);
+    return count;
 }
+
 /**
- * strtow - function that splits string into words
- * @str: string being passed
- * Return: null if string is empty or null or function fails
+ * strtow - Split a string into words.
+ * @str: The string to split.
+ *
+ * Return: An array of words, or NULL if memory allocation fails.
  */
 char **strtow(char *str)
 {
-char **words;
-int word_count;
-int in_word = 0;
-char *p = str;
-int i = 0;
-char *start = str;
+    char **words;
+    int wc, i, j, in_word;
+    char *start;
 
-if (str == NULL || *str == '\0')
-return (NULL);
-word_count = count_words(str);
-words = malloc((word_count + 1) * sizeof(char *));
-if (!words)
-return (NULL);
-while (*p != '\0')
-{
-if (*p == ' ')
-{
-if (in_word)
-{
-words[i] = copy_word(start, p);
-if (!words[i])
-return (NULL);
-i++;
-in_word = 0;
-}
-}
-else if (!in_word)
-{
-start = p;
-in_word = 1;
-}
-p++;
-}
-if (in_word)
-{
-words[i] = copy_word(start, p);
-if (!words[i])
-return (NULL);
-i++;
-}
-words[i] = NULL;
-return (words);
+    if (str == NULL || *str == '\0')
+        return (NULL);
+
+    wc = word_count(str);
+    words = malloc(sizeof(char *) * (wc + 1));
+    if (words == NULL)
+        return (NULL);
+
+    in_word = 0;
+    for (i = 0, start = str; *str; str++)
+    {
+        if (*str == ' ')
+        {
+            if (in_word)
+            {
+                words[i] = malloc(sizeof(char) * (str - start + 1));
+                if (words[i] == NULL)
+                    return (NULL);
+                for (j = 0; j < (str - start); j++)
+                    words[i][j] = start[j];
+                words[i++][j] = '\0';
+                in_word = 0;
+            }
+        }
+        else if (!in_word)
+        {
+            start = str;
+            in_word = 1;
+        }
+    }
+    if (in_word)
+    {
+        words[i] = malloc(sizeof(char) * (str - start + 1));
+        if (words[i] == NULL)
+            return (NULL);
+        for (j = 0; j < (str - start); j++)
+            words[i][j] = start[j];
+        words[i++][j] = '\0';
+    }
+    words[i] = NULL;
+
+    return (words);
 }
