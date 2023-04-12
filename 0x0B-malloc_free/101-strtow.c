@@ -21,9 +21,7 @@ return (NULL);
 while (*p != '\0')
 {
 if (*p == ' ')
-{
 in_word = 0;
-}
 else if (!in_word)
 {
 word_count++;
@@ -31,6 +29,8 @@ in_word = 1;
 }
 p++;
 }
+if (word_count == 0)
+return (NULL);
 words = (char **) malloc((word_count + 1) * sizeof(char *));
 if (!words)
 return (NULL);
