@@ -23,12 +23,8 @@ l = l1 + l2 + 1;
 res = malloc(sizeof(int) * l);
 if (!res)
 return (1);
-i = 0;
-while (i <= l1 + l2)
-{
+for (i = 0; i <= l1 + l2; i++)
 res[i] = 0;
-i++;
-}
 for (l1 = l1 - 1; l1 >= 0; l1--)
 {
 d1 = s1[l1] - '0';
