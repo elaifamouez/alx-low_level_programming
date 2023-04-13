@@ -22,4 +22,6 @@ ALX  Low Level Programming
 
 0x0A. C - argc, argv -- Working with argc, argv.
 
-0x0B. C - malloc, free --Working with Dynamic memory allocation in C. 
+0x0B. C - malloc, free --Working with Dynamic memory allocation in C.
+
+0x0C. C - More malloc, free -- Working with Automatic and dynamic allocation, malloc and free. 
