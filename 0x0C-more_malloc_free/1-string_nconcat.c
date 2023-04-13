@@ -16,7 +16,7 @@ unsigned int i, l;
 
 if (!s1)
 s1 = "";
-if (!s1)
+if (!s2)
 s2 = "";
 i = 0;
 while (s1[i] != '\0')
