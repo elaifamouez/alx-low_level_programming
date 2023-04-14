@@ -7,7 +7,7 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 int *array_range(int min, int max);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 /**
- * _strl - returns the lgth of a string
+ * _strlen - returns the lgth of a string
  * @s: string to evaluate
  *
  * Return: the lgth of the string
