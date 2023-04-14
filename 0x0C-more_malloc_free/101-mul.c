@@ -1,94 +1,99 @@
-#include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
+#include "main.h"
 
 /**
-* _isNum - check if is a number
-*@num: string to check
-*Return: 1 is numm, 0 not num
-*/
-int _isNum(char *num)
+ * is_digit - checks if a string contains a non-digit char
+ * @s: string to be evaluated
+ *
+ * Return: 0 if a non-digit is found, 1 otherwise
+ */
+int is_digit(char *s)
 {
-int i;
+int i = 0;
 
-for (i = 0; num[i] != '\0'; i++)
+while (s[i])
 {
-if (num[i] < '0' || num[i] > '9')
+if (s[i] < '0' || s[i] > '9')
 return (0);
+i++;
 }
 return (1);
 }
 /**
-* *_memset - copies a character to the firstn characters of the string pointed
-*@s: original string
-*@b: value to remplace
-*@n: number of bytes
-*Return: s (string modify)
-*/
-char *_memset(char *s, char b, unsigned int n)
+ * _strl - returns the length of a string
+ * @s: string to evaluate
+ *
+ * Return: the length of the string
+ */
+int _strl(char *s)
 {
-unsigned int i;
-
-for (i = 0; i < n; i++)
-s[i] = b;
-return (s);
+int i = 0;
+while (s[i] != '\0')
+{
+i++;
+}
+return (i);
 }
 /**
-* _strlen - returns the lenght of a string
-*@s: poiter of character
-*Return: the length of a string
-*/
-int _strlen(char *s)
+ * errors - handles errors for main
+ */
+void errors(void)
 {
-int len;
-
-len = 0;
-while (*(s + len) != '\0')
-len++;
-return (len);
+	printf("Error\n");
+	exit(98);
 }
 /**
-* main - multiple 2 positive numbers
-*@argc: argument counter
-*@argv: number to multiply
-*Return: 0 (success)
-*/
+ * main - multiplies two positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
+ *
+ * Return: always 0 (Success)
+ */
 int main(int argc, char *argv[])
 {
-int length, c, prod, i, j, l1, l2;
-int *res;
+char *s1, *s2;
+int l1, l2, l, i, carry, d1, d2, *res, a = 0;
 
-if ((argc != 3 || !(_isNum(argv[1]))) || !(_isNum(argv[2])))
-puts("Error"), exit(98);
-l1 = _strlen(argv[1]), l2 = _strlen(argv[2]);
-length = l1 + l2;
-res = calloc(length, sizeof(int *));
-if (res == NULL)
-puts("Error"), exit(98);
-for (i = l2 - 1; i > -1; i--)
+s1 = argv[1], s2 = argv[2];
+if (argc != 3 || !is_digit(s1) || !is_digit(s2))
+errors();
+l1 = _strl(s1);
+l2 = _strl(s2);
+l = l1 + l2 + 1;
+res = malloc(sizeof(int) * l);
+if (!res)
+return (1);
+for (i = 0; i <= l1 + l2; i++)
+res[i] = 0;
+for (l1 = l1 - 1; l1 >= 0; l1--)
 {
-c = 0;
-for (j = l1; j > -1; j--)
+d1 = s1[l1] - '0';
+carry = 0;
+for (l2 = _strl(s2) - 1; l2 >= 0; l2--)
 {
-prod = (argv[2][i] - '0') * (argv[1][j] - '0');
-c = (prod / 10);
-res[(i + j) + 1] += (prod % 10);
-if (res[(i + j) + 1] > 9)
-{
-res[i + j] += res[(i + j) + 1] / 10;
-res[(i + j) + 1] = res[(i + j) + 1] % 10;
+d2 = s2[l2] - '0';
+carry += res[l1 + l2 + 1] + (d1 * d2);
+res[l1 + l2 + 1] = carry % 10;
+carry /= 10;
 }
-res[(i + j) + 1] += c;
+if (carry > 0)
+res[l1 + l2 + 1] += carry;
 }
-}
-if (res[0] == 0)
-i = 1;
-else
 i = 0;
-for (; i < length; i++)
-printf("%d", res[i]);
-printf("\n");
+while (i < (l - 1))
+{
+if (res[i])
+a = 1;
+if (a)
+_putchar(res[i] + '0');
+i++;
+}
+if (!a)
+{
+_putchar('0');
+_putchar('\n');
 free(res);
+}
 return (0);
 }
