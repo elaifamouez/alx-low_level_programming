@@ -81,7 +81,7 @@ if (carry > 0)
 res[l1 + l2 + 1] += carry;
 }
 i = 0;
-while (i < (l - 1))
+while (i < l - 1)
 {
 if (res[i])
 a = 1;
@@ -90,10 +90,8 @@ _putchar(res[i] + '0');
 i++;
 }
 if (!a)
-{
 _putchar('0');
 _putchar('\n');
 free(res);
-}
 return (0);
 }
