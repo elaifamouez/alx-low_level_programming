@@ -20,7 +20,6 @@ i++;
 }
 return (1);
 }
-
 /**
  * _strl - returns the length of a string
  * @s: string to evaluate
@@ -36,7 +35,6 @@ i++;
 }
 return (i);
 }
-
 /**
  * errors - handles errors for main
  */
@@ -45,7 +43,6 @@ void errors(void)
 	printf("Error\n");
 	exit(98);
 }
-
 /**
  * main - multiplies two positive numbers
  * @argc: number of arguments
@@ -63,7 +60,7 @@ if (argc != 3 || !is_digit(s1) || !is_digit(s2))
 errors();
 l1 = _strl(s1);
 l2 = _strl(s2);
-l = l1 + l2;
+l = l1 + l2 + 1;
 res = malloc(sizeof(int) * l);
 if (!res)
 return (1);
