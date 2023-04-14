@@ -3,137 +3,98 @@
 #include "main.h"
 
 /**
- * _calloc - allocates memory for an array of @nmemb elements of
- * @size bytes each and returns a pointer to the allocated memory.
+ * is_digit - checks if a string contains a non-digit char
+ * @s: string to be evaluated
  *
- * @nmemb: allocate memory for array
- * @size: allocate element of size bytes
- *
- * Return: pointer to the allocated memory.
+ * Return: 0 if a non-digit is found, 1 otherwise
  */
-void *_calloc(unsigned int nmemb, unsigned int size)
-{
-char *p;
-unsigned int i, j;
-
-if (!nmemb || !size)
-return (NULL);
-p = malloc(size * nmemb);
-if (!p)
-return (NULL);
-for (i = 0; i < nmemb; i++)
-{
-for (j = 0; j < size; j++)
-{
-*(p + i * size + j) = 0;
-}
-}
-return (p);
-}
-/**
- * check_number - checks if string has only
- *                numbers
- *
- * @str: string to check
- *
- * Return: 0 is true 1 if false
-*/
-int check_number(char *str)
-{
-while (*str != '\0')
-{
-if (*str < '0' || *str > '9')
-return (1);
-str++;
-}
-return (0);
-}
-/**
- * _length - get the length of strings
- *
- * @str: string to get length of
- *
- * Return: length of string
-*/
-int _length(char *str)
+int is_digit(char *s)
 {
 int i = 0;
 
-while (str[i] != '\0')
+while (s[i])
+{
+if (s[i] < '0' || s[i] > '9')
+return (0);
 i++;
+}
+return (1);
+}
+
+/**
+ * _strl - returns the length of a string
+ * @s: string to evaluate
+ *
+ * Return: the length of the string
+ */
+int _strl(char *s)
+{
+int i = 0;
+while (s[i] != '\0')
+{
+i++;
+}
 return (i);
 }
-/**
- * _mul - multiplies two positive numbers and displays it
- * @num1: The first number to be multiplied.
- * @num2: The second number to be multiplied.
- * 
- * Return: void. 
- */
-void _mul(char *s1, char *s2)
-{
-int i, l1, l2, total_l, f_digit, s_digit, res = 0, tmp;
-char *ptr;
-void *temp;
 
-l1 = _length(s1);
-l2 = _length(s2);
-tmp = l2;
-total_l = l1 + l2;
-ptr = _calloc(sizeof(int), total_l);
-temp = ptr;
-for (l1--; l1 >= 0; l1--)
-{
-f_digit = s1[l1] - '0';
-res = 0;
-l2 = tmp;
-for (l2--; l2 >= 0; l2--)
-{
-s_digit = s2[l2] - '0';
-res += ptr[l2 + l1 + 1] + (f_digit * s_digit);
-ptr[l1 + l2 + 1] = res % 10;
-res /= 10;
-}
-if (res)
-ptr[l1 + l2 + 1] = res % 10;
-}
-while (*ptr == 0)
-{
-ptr++;
-total_l--;
-}
-for (i = 0; i < total_l; i++)
-printf("%i", ptr[i]);
-printf("\n");
-free(temp);
-}
 /**
- * main - Entry point
- *
- * Description: a program that multiplies
- *            two positive numbers
- *
+ * errors - handles errors for main
+ */
+void errors(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+/**
+ * main - multiplies two positive numbers
  * @argc: number of arguments
- * @argv: arguments array
+ * @argv: array of arguments
  *
- * Return: 0 on success 98 on faliure
-*/
+ * Return: always 0 (Success)
+ */
 int main(int argc, char *argv[])
 {
-char *n1 = argv[1];
-char *n2 = argv[2];
+char *s1, *s2;
+int l1, l2, l, i, carry, d1, d2, *res, a = 0;
 
-if (argc != 3 || check_number(n1) || check_number(n2))
+s1 = argv[1], s2 = argv[2];
+if (argc != 3 || !is_digit(s1) || !is_digit(s2))
+errors();
+l1 = _strl(s1);
+l2 = _strl(s2);
+l = l1 + l2 + 1;
+res = malloc(sizeof(int) * l);
+if (!res)
+return (1);
+for (i = 0; i <= l1 + l2; i++)
+res[i] = 0;
+for (l1 = l1 - 1; l1 >= 0; l1--)
 {
-printf("Error\n");
-exit(98);
+d1 = s1[l1] - '0';
+carry = 0;
+for (l2 = _strl(s2) - 1; l2 >= 0; l2--)
+{
+d2 = s2[l2] - '0';
+carry += res[l1 + l2 + 1] + (d1 * d2);
+res[l1 + l2 + 1] = carry % 10;
+carry /= 10;
 }
-if (*n1 == '0' || *n2 == '0')
+if (carry > 0)
+res[l1 + l2 + 1] += carry;
+}
+i = 0;
+while (i < l - 1)
 {
+if (res[i])
+a = 1;
+if (a)
+_putchar(res[i] + '0');
+i++;
+}
+if (!a)
 _putchar('0');
 _putchar('\n');
-}
-else
-_mul(n1, n2);
+free(res);
 return (0);
 }
