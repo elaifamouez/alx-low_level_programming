@@ -12,14 +12,12 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
  *
  * Return: the lgth of the string
  */
-int _strl(char *s)
+int _strlen(char *s)
 {
-int i = 0;
-while (s[i] != '\0')
-{
-i++;
-}
-return (i);
+int len = 0;
+while (*s++)
+len++;
+return (len);
 }
 /**
  * is_digit - checks if a string contains a non-digit char
@@ -27,23 +25,36 @@ return (i);
  *
  * Return: 0 if a non-digit is found, 1 otherwise
  */
-int is_digit(char *s)
+int _isdigit(char *s)
 {
-int i = 0;
-while (s[i])
+while (*s)
 {
-if (s[i] < '0' || s[i] > '9')
+if (*s < '0' || *s > '9')
 return (0);
-i++;
+s++;
 }
 return (1);
 }
 /**
- * errors - handles errors for main
+ * _puts - prints a string to stdout
+ * @s: string to be printed
+ *
+ * Return: void
  */
-void errors(void)
+void _puts(char *s)
 {
-	printf("Error\n");
-	exit(98);
+while (*s)
+ _putchar(*s++);
+}
+/**
+ * _print_error - prints an error message and exits with status code 98
+ *
+ * Return: void
+ */
+void _print_error(void)
+{
+_puts("Error");
+ _putchar('\n');
+exit(98);
 }
 #endif/*MAIN_H*/

@@ -1,56 +1,50 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
-
 /**
- * main - multiplies two positive numbers
- * @argc: number of arguments
- * @argv: array of arguments
- *
- * Return: always 0 (Success)
+ * _mul - multiplies two positive numbers and displays it
+ * @num1: The first number to be multiplied.
+ * @num2: The second number to be multiplied.
+ * 
+ * Return: void. 
  */
-int main(int argc, char *argv[])
+void _mul(char *num1, char *num2)
 {
-char *s1, *s2;
-int l1, l2, l, i, carry, d1, d2, *res, a = 0;
+int len1 = _strlen(num1), len2 = _strlen(num2), i, j;
+int *result;
 
-s1 = argv[1], s2 = argv[2];
-if (argc != 3 || !is_digit(s1) || !is_digit(s2))
-errors();
-l1 = _strl(s1);
-l2 = _strl(s2);
-l = l1 + l2 + 1;
-res = malloc(sizeof(int) * l);
-if (!res)
-return (1);
-for (i = 0; i <= l1 + l2; i++)
-res[i] = 0;
-for (l1 = l1 - 1; l1 >= 0; l1--)
+result = calloc(len1 + len2, sizeof(int));
+for (i = len1 - 1; i >= 0; i--)
+for (j = len2 - 1; j >= 0; j--)
+result[i + j + 1] += (num1[i] - '0') * (num2[j] - '0');
+for (i = len1 + len2 - 1; i > 0; i--)
+if (result[i] >= 10)
 {
-d1 = s1[l1] - '0';
-carry = 0;
-for (l2 = _strl(s2) - 1; l2 >= 0; l2--)
-{
-d2 = s2[l2] - '0';
-carry += res[l1 + l2 + 1] + (d1 * d2);
-res[l1 + l2 + 1] = carry % 10;
-carry /= 10;
+result[i - 1] += result[i] / 10;
+result[i] %= 10;
 }
-if (carry > 0)
-res[l1 + l2 + 1] += carry;
-}
-i = 0;
-while (i < l - 1)
-{
-if (res[i])
-a = 1;
-if (a)
-_putchar(res[i] + '0');
-i++;
-}
-if (!a)
-_putchar('0');
+for (i = result[0] == 0 ? 1 : 0; i < len1 + len2; i++)
+_putchar(result[i] + '0');
 _putchar('\n');
-free(res);
+}
+/**
+ * main - Multiplies two positive numbers.
+ * @argv: The number of arguments passed to the program.
+ * @argc: An array of pointers to the arguments.
+ *
+ * Description: If the number of arguments is incorrect or one number
+ *              contains non-digits, the function exits with a status of 98.
+ * Return: Always 0.
+ */
+int main(int argc, char **argv)
+{
+if (argc != 3 || !_isdigit(argv[1]) || !_isdigit(argv[2]))
+{
+_print_error();
+}
+else
+{
+ _mul(argv[1], argv[2]);
+}
 return (0);
 }
