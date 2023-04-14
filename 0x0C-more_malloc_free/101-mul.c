@@ -40,13 +40,13 @@ return (p);
 */
 int check_number(char *str)
 {
-	while (*str != '\0')
-	{
-		if (*str < '0' || *str > '9')
-			return (1);
-		str++;
-	}
-	return (0);
+while (*str != '\0')
+{
+if (*str < '0' || *str > '9')
+return (1);
+str++;
+}
+return (0);
 }
 /**
  * _length - get the length of strings
@@ -57,11 +57,11 @@ int check_number(char *str)
 */
 int _length(char *str)
 {
-	int i = 0;
+int i = 0;
 
-	while (str[i] != '\0')
-		i++;
-	return (i);
+while (str[i] != '\0')
+i++;
+return (i);
 }
 /**
  * _mul - multiplies two positive numbers and displays it
