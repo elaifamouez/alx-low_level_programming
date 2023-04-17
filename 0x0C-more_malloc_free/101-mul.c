@@ -24,9 +24,7 @@ return (NULL);
 for (i = 0; i < nmemb; i++)
 {
 for (j = 0; j < size; j++)
-{
 *(p + i * size + j) = 0;
-}
 }
 return (p);
 }
@@ -40,6 +38,7 @@ return (p);
 */
 int check_number(char *str)
 {
+
 while (*str != '\0')
 {
 if (*str < '0' || *str > '9')
@@ -68,7 +67,7 @@ return (i);
  * @s1: The first number to be multiplied.
  * @s2: The second number to be multiplied.
  * 
- * Return: void. 
+ * Return: void.
  */
 void _mul(char *s1, char *s2)
 {
@@ -120,8 +119,7 @@ free(temp);
 */
 int main(int argc, char *argv[])
 {
-char *n1 = argv[1];
-char *n2 = argv[2];
+char *n1 = argv[1], *n2 = argv[2];
 
 if (argc != 3 || check_number(n1) || check_number(n2))
 {
