@@ -24,4 +24,8 @@ ALX  Low Level Programming
 
 0x0B. C - malloc, free --Working with Dynamic memory allocation in C.
 
-0x0C. C - More malloc, free -- Working with Automatic and dynamic allocation, malloc and free. 
+0x0C. C - More malloc, free -- Working with Automatic and dynamic allocation, malloc and free.
+
+0x0E. C - Structures, typedef -- Working with structures and typedef.
+
+0x0D. C - Preprocessor -- Working with macros and C Preprocessor. 
