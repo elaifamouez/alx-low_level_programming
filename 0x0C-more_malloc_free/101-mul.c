@@ -1,6 +1,6 @@
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
 
 /**
  * _calloc - allocates memory for an array of @nmemb elements of
@@ -65,8 +65,8 @@ return (i);
  * _mul - multiplies two positive numbers and displays it
  * @s1: The first number to be multiplied.
  * @s2: The second number to be multiplied.
- * 
- * Return: void.
+ *
+ * Return: void. 
  */
 void _mul(char *s1, char *s2)
 {
@@ -88,7 +88,7 @@ l2 = tmp;
 for (l2--; l2 >= 0; l2--)
 {
 s_digit = s2[l2] - '0';
-res += ptr[l2 + l1 + 1] + (f_digit * s_digit);
+res += ptr[l2 + l1 + 1] + (f_digit *s_digit);
 ptr[l1 + l2 + 1] = res % 10;
 res /= 10;
 }
