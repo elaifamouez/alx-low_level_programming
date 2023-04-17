@@ -65,8 +65,8 @@ return (i);
 }
 /**
  * _mul - multiplies two positive numbers and displays it
- * @num1: The first number to be multiplied.
- * @num2: The second number to be multiplied.
+ * @s1: The first number to be multiplied.
+ * @s2: The second number to be multiplied.
  * 
  * Return: void. 
  */
@@ -116,7 +116,7 @@ free(temp);
  * @argc: number of arguments
  * @argv: arguments array
  *
- * Return: 0 on success 98 on faliure
+ * Return: 0 on success 98 on failure
 */
 int main(int argc, char *argv[])
 {
