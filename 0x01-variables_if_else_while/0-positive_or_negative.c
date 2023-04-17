@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
+
 
 /**
  * _calloc - allocates memory for an array of @nmemb elements of
@@ -38,7 +38,6 @@ return (p);
 */
 int check_number(char *str)
 {
-
 while (*str != '\0')
 {
 if (*str < '0' || *str > '9')
@@ -67,7 +66,7 @@ return (i);
  * @s1: The first number to be multiplied.
  * @s2: The second number to be multiplied.
  * 
- * Return: void.
+ * Return: void. 
  */
 void _mul(char *s1, char *s2)
 {
