@@ -66,7 +66,7 @@ return (i);
  * @s1: The first number to be multiplied.
  * @s2: The second number to be multiplied.
  *
- * Return: void. 
+ * Return: void.
  */
 void _mul(char *s1, char *s2)
 {
