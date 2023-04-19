@@ -11,6 +11,7 @@
  */
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
+char *ps;
 int (*p)(int, int);
 
 if (argc != 4)
@@ -18,8 +19,9 @@ if (argc != 4)
 printf("Error\n");
 exit(98);
 }
+ps = argv[2];
 p = get_op_func(argv[2]);
-if (!p || op[1] != '\0')
+if (!p || ps[1] != '\0')
 {
 printf("Error\n");
 exit(99);
