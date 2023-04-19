@@ -19,7 +19,7 @@ printf("Error\n");
 exit(98);
 }
 p = get_op_func(argv[2]);
-if (!p)
+if (!p || op[1] != '\0')
 {
 printf("Error\n");
 exit(99);
