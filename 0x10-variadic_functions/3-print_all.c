@@ -62,10 +62,11 @@ printf("%f", va_arg(f, double));
 void print_all(const char * const format, ...)
 {
 va_list l;
-int i = 0, j=0;
-
+int i = 0, j = 0;
 va_start(l, format);
-while (format != NULL && format[i] != '\0')
+
+
+while (format && (*(format + i)))
 {
 switch (format[i])
 {
