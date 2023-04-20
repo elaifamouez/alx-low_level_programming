@@ -30,4 +30,6 @@ ALX  Low Level Programming
 
 0x0D. C - Preprocessor -- Working with macros and C Preprocessor.
 
-0x0F. C - Function pointers --Working with Function Pointer in C. 
+0x0F. C - Function pointers -- Working with Function Pointer in C.
+
+0x10. C - Variadic functions -- Working with Variadic Functions and Const Keyword.  
