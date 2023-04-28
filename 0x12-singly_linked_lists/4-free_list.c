@@ -8,14 +8,15 @@
  */
 void free_list(list_t *head)
 {
-list_t *temp;
+list_t *current = head;
+list_t *next;
 
-temp = head;
-while ((temp = head) != NULL)
+while ((current = head) != NULL)
 {
-if (temp->str)
-free(temp->str);
-free(temp);
-temp = temp->next;
+next = current->next;
+free(current->str);
+free(current);
+current = next;
 }
+head = NULL;
 }
