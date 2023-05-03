@@ -1,4 +1,6 @@
 #include "lists.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
  * free_listint_safe - frees a linked list.
@@ -36,6 +38,7 @@ for (j = 0; j < num - 1; j++)
 newlist[j] = list[j];
 newlist[j] = *h;
 free(list);
+list = newlist;
 next = (*h)->next;
 free(*h);
 *h = next;
