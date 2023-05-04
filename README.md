@@ -37,3 +37,5 @@ ALX  Low Level Programming
 0x12. C - Singly linked lists -- Working with linked lists and arrays.
 
 0x13. C - More singly linked lists -- Working with Single linked list.
+
+0x14. C - Bit manipulation -- Working with bitwise operators.
