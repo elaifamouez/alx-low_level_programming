@@ -19,7 +19,7 @@ if (text_content != NULL)
 for (len = 0; text_content[len];)
 len++;
 }
-_file = open(filename, O_WRONLY, O_APPEND);
+_file = open(filename, O_WRONLY | O_APPEND);
 _write = write(_file, text_content, len);
 if (_file == -1 || _write == -1 )
 return (-1);
