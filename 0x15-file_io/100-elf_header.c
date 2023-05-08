@@ -11,23 +11,6 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
 /**
- * validate_elf_file - Checks if a file is an ELF file.
- * @header: A pointer to the ELF header of the file.
- *
- * Description: If the file is not an ELF file - exit code 98.
- */
-void validate_elf_file(Elf64_Ehdr *header)
-{
-    if (header->e_ident[EI_MAG0] != ELFMAG0 ||
-        header->e_ident[EI_MAG1] != ELFMAG1 ||
-        header->e_ident[EI_MAG2] != ELFMAG2 ||
-        header->e_ident[EI_MAG3] != ELFMAG3)
-    {
-        dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-        exit(98);
-    }
-}
-/**
  * print_magic - Prints the magic numbers of an ELF header.
  * @e_ident: A pointer to an array containing the ELF magic numbers.
  *
@@ -273,7 +256,14 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 
-	validate_elf_file(header);
+	 if (header->e_ident[EI_MAG0] != ELFMAG0 ||
+        header->e_ident[EI_MAG1] != ELFMAG1 ||
+        header->e_ident[EI_MAG2] != ELFMAG2 ||
+        header->e_ident[EI_MAG3] != ELFMAG3)
+    {
+        dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+        exit(98);
+    }
 	printf("ELF Header:\n");
 	print_magic(header->e_ident);
 	print_class(header->e_ident);
