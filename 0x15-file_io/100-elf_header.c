@@ -1,5 +1,6 @@
 #include "main.h"
 
+void print_magic(unsigned char *e_ident);
 void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
@@ -7,6 +8,29 @@ void print_osabi(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
+
+/**
+ * print_magic - Prints the magic numbers of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF magic numbers.
+ *
+ * Description: Magic numbers are separated by spaces.
+ */
+void print_magic(unsigned char *e_ident)
+{
+	int index;
+
+	printf("  Magic:   ");
+
+	for (index = 0; index < EI_NIDENT; index++)
+	{
+		printf("%02x", e_ident[index]);
+
+		if (index == EI_NIDENT - 1)
+			printf("\n");
+		else
+			printf(" ");
+	}
+}
 
 /**
  * print_class - Prints the class of an ELF header.
@@ -237,9 +261,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	    header->e_ident[EI_MAG3] != ELFMAG3)
 		dprintf(STDERR_FILENO, "Error: Not an ELF file\n"), exit(98);
 	printf("ELF Header:\n");
-	printf("  Magic:                  %02x %02x %02x %02x\n",
-	       header->e_ident[EI_MAG0], header->e_ident[EI_MAG1],
-	       header->e_ident[EI_MAG2], header->e_ident[EI_MAG3]);
+	print_magic(header->e_ident);
 	print_class(header->e_ident);
 	print_data(header->e_ident);
 	print_version(header->e_ident);
