@@ -237,7 +237,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	    header->e_ident[EI_MAG3] != ELFMAG3)
 		dprintf(STDERR_FILENO, "Error: Not an ELF file\n"), exit(98);
 	printf("ELF Header:\n");
-	printf("  Magic:   %02x %02x %02x %02x\n",
+	printf("  Magic:                  %02x %02x %02x %02x\n",
 	       header->e_ident[EI_MAG0], header->e_ident[EI_MAG1],
 	       header->e_ident[EI_MAG2], header->e_ident[EI_MAG3]);
 	print_class(header->e_ident);
