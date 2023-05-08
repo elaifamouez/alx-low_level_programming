@@ -268,7 +268,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
 	int o, r;
-
+unsigned char *id_file;
 	o = open(argv[1], O_RDONLY);
 	if (o == -1)
 	{
@@ -298,7 +298,9 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_data(header->e_ident);
 	print_version(header->e_ident);
 	print_osabi(header->e_ident);
-	print_abi(header->e_ident);
+	id_file = header->e_ident;
+	printf("  ABI Version:                       %d\n",
+	       id_file[EI_ABIVERSION]);
 	print_type(header->e_type, header->e_ident);
 	print_entry(header->e_entry, header->e_ident);
 
