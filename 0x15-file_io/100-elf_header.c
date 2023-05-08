@@ -3,7 +3,6 @@
 void print_magic(unsigned char *e_ident);
 void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
-void print_version(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry(unsigned long int e_entry, unsigned char *e_ident);
@@ -75,19 +74,6 @@ void print_data(unsigned char *e_ident)
 	default:
 		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
-}
-
-/**
- * print_version - Prints the version of an ELF header.
- * @e_ident: A pointer to an array containing the ELF version.
- */
-void print_version(unsigned char *e_ident)
-{
-	printf("  Version:                           ");
-	if (e_ident[EI_VERSION] == EV_CURRENT)
-		printf("%i (current)\n", EV_CURRENT);
-	else
-		printf("%i\n", e_ident[EI_VERSION]);
 }
 
 /**
@@ -254,7 +240,11 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_magic(header->e_ident);
 	print_class(header->e_ident);
 	print_data(header->e_ident);
-	print_version(header->e_ident);
+	printf("  Version:                           ");
+	if (header->e_ident[EI_VERSION] == EV_CURRENT)
+		printf("%i (current)\n", EV_CURRENT);
+	else
+		printf("%i\n", header->e_ident[EI_VERSION]);
 	print_osabi(header->e_ident);
 	printf("  ABI Version:                       %d\n",
 	       header->e_ident[EI_ABIVERSION]);
