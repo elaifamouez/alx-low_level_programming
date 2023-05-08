@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 {
 int _file1, _file2, err_close;
 char buffer[1024];
-ssize_t _read = 1024, _write;
+ssize_t _read, _write;
 
 if (argc != 3)
 {
@@ -35,6 +35,7 @@ if (_file2 == -1)
 dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 exit(99);
 }
+_read = 1024;
 while (_read == 1024)
 {
 _read = read(_file1, buffer, 1024);
