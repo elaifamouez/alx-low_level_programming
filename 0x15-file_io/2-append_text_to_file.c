@@ -21,7 +21,7 @@ len++;
 }
 _file = open(filename, O_WRONLY | O_APPEND);
 _write = write(_file, text_content, len);
-if (_file == -1 || _write == -1 )
+if (_file == -1 || _write == -1)
 return (-1);
 close(_file);
 return (1);
