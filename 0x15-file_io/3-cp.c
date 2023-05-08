@@ -1,6 +1,38 @@
 #include "main.h"
 
 /**
+ * check97 - checks for the correct number of arguments
+ * @argc: number of arguments
+ *
+ * Return: void
+ */
+void check97(int argc)
+{
+if (argc != 3)
+{
+dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+exit(97);
+}
+}
+/**
+ * check100 - checks that file descriptors were closed properly
+ *
+ * @fd: file descriptor
+ *
+ * Return: void
+ */
+void check100(int fd)
+{
+int c;
+
+c = close(fd);
+if (c == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+exit(100);
+}
+}
+/**
  * main - Copies the contents of a file to another file.
  * @argc: The number of arguments supplied to the program.
  * @argv: An array of pointers to the arguments.
@@ -14,54 +46,31 @@
  */
 int main(int argc, char *argv[])
 {
-int _file1, _file2, err_close;
-ssize_t _read, _write;
+int _file1, _file2, _read;
 char buffer[1024];
 
-if (argc != 3)
-{
-dprintf(STDERR_FILENO, "%s\n", "Usage: cp _file1 _file2");
-exit(97);
-}
+check97(argc);
 _file1 = open(argv[1], O_RDONLY);
-_file2 = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
 if (_file1 == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 exit(98);
 }
-if (_file2 == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-exit(99);
-}
-_read = 1024;
-while (_read == 1024)
-{
+_file2 = open(argv[2], O_TRUNC | O_CREAT | O_WRONLY, 0664);
 _read = read(_file1, buffer, 1024);
+while (_read > 0)
+{
+if (_file2 == -1 || (write(_file2, buffer, _read) != _read))
+{
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
+}
+}
 if (_read == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 exit(98);
 }
-_write = write(_file2, buffer, _read);
-if (_write == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-exit(99);
-}
-}
-err_close = close(_file1);
-if (err_close == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", _file1);
-exit(100);
-}
-err_close = close(_file2);
-if (err_close == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", _file2);
-exit(100);
-}
+check100(_file1);
+check100(_file2);
 return (0);
 }
