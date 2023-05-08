@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 void print_magic(unsigned char *e_ident);
 void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
@@ -232,7 +231,7 @@ void close_elf(int elf)
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
-	int o, r;
+	int o, r, index;
 
 	o = open(argv[1], O_RDONLY);
 	if (o == -1)
@@ -256,14 +255,17 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 
-	 if (header->e_ident[EI_MAG0] != ELFMAG0 ||
-        header->e_ident[EI_MAG1] != ELFMAG1 ||
-        header->e_ident[EI_MAG2] != ELFMAG2 ||
-        header->e_ident[EI_MAG3] != ELFMAG3)
-    {
-        dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-        exit(98);
-    }
+	for (index = 0; index < 4; index++)
+	{
+		if (header->e_ident[index] != 127 &&
+		    header->e_ident[index] != 'E' &&
+		    header->e_ident[index] != 'L' &&
+		    header->e_ident[index] != 'F')
+		{
+			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+			exit(98);
+		}
+	}
 	printf("ELF Header:\n");
 	print_magic(header->e_ident);
 	print_class(header->e_ident);
