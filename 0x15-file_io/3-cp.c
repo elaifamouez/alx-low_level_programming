@@ -32,7 +32,26 @@ dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 exit(100);
 }
 }
-
+/**
+ * error_file - checks if files can be opened.
+ * @_file1: file_from.
+ * @_file2: file_to.
+ * @argv: arguments vector.
+ * Return: no return.
+ */
+void error_file(int _file1, int _file2, char *argv[])
+{
+	if (_file1 == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
+	if (_file2 == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		exit(99);
+	}
+}
 /**
  * main - Copies the contents of a file to another file.
  * @argc: The number of arguments supplied to the program.
@@ -53,24 +72,15 @@ char buffer[1024];
 check97(argc);
 _file1 = open(argv[1], O_RDONLY);
 if (_file1 == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-exit(98);
-}
+error_file(-1, 0, argv);
 _file2 = open(argv[2], O_TRUNC | O_CREAT | O_WRONLY, 0664);
 while ((_read = read(_file1, buffer, 1024)) > 0)
 {
 if (_file2 == -1 || (write(_file2, buffer, _read) != _read))
-{
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-exit(99);
-}
+error_file(0, -1, argv);
 }
 if (_read == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-exit(98);
-}
+error_file(-1, 0, argv);
 check100(_file1);
 check100(_file2);
 return (0);
