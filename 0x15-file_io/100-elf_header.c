@@ -83,18 +83,11 @@ void print_data(unsigned char *e_ident)
  */
 void print_version(unsigned char *e_ident)
 {
-	printf("  Version:                           %d",
-	       e_ident[EI_VERSION]);
-
-	switch (e_ident[EI_VERSION])
-	{
-	case EV_CURRENT:
-		printf(" (current)\n");
-		break;
-	default:
-		printf("\n");
-		break;
-	}
+	printf("  Version:                           ");
+	if (e_ident[EI_VERSION] == EV_CURRENT)
+		printf("%i (current)\n", EV_CURRENT);
+	else
+		printf("%i\n", e_ident[EI_VERSION]);
 }
 
 /**
