@@ -1,36 +1,14 @@
 #include "main.h"
+#define REV(n) ((n << 24) | (((n >> 16) << 24) >> 16) | \
+				(((n << 16) >> 24) << 16) | (n >> 24))
 
-void print_magic(unsigned char *e_ident);
 void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
-void print_entry(unsigned long int e_entry, unsigned char *e_ident);
+void print_entry(unsigned int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
-
-/**
- * print_magic - Prints the magic numbers of an ELF header.
- * @e_ident: A pointer to an array containing the ELF magic numbers.
- *
- * Description: Magic numbers are separated by spaces.
- */
-void print_magic(unsigned char *e_ident)
-{
-	int index;
-
-	printf("  Magic:   ");
-
-	for (index = 0; index < EI_NIDENT; index++)
-	{
-		printf("%02x", e_ident[index]);
-
-		if (index == EI_NIDENT - 1)
-			printf("\n");
-		else
-			printf(" ");
-	}
-}
 
 /**
  * print_class - Prints the class of an ELF header.
@@ -183,22 +161,13 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
  * @e_entry: The address of the ELF entry point.
  * @e_ident: A pointer to an array containing the ELF class.
  */
-void print_entry(unsigned long int e_entry, unsigned char *e_ident)
+void print_entry(unsigned int e_entry, unsigned char *e_ident)
 {
-	printf("  Entry point address:               ");
-
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
-	{
-		e_entry = ((e_entry << 8) & 0xFF00FF00) |
-			  ((e_entry >> 8) & 0xFF00FF);
-		e_entry = (e_entry << 16) | (e_entry >> 16);
-	}
+		e_entry = REV(e_entry);
 
-	if (e_ident[EI_CLASS] == ELFCLASS32)
-		printf("%#x\n", (unsigned int)e_entry);
-
-	else
-		printf("%#lx\n", e_entry);
+	printf("  Entry point address:               ");
+	printf("%#x\n", (unsigned int)e_entry);
 }
 
 /**
@@ -231,7 +200,7 @@ void close_elf(int elf)
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
-	int o, r, index;
+	int o, r;
 
 	o = open(argv[1], O_RDONLY);
 	if (o == -1)
@@ -255,19 +224,15 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 
-	for (index = 0; index < 4; index++)
-	{
-		if (header->e_ident[index] != 127 &&
-		    header->e_ident[index] != 'E' &&
-		    header->e_ident[index] != 'L' &&
-		    header->e_ident[index] != 'F')
-		{
-			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-			exit(98);
-		}
-	}
+	if (header->e_ident[EI_MAG0] != ELFMAG0 ||
+	    header->e_ident[EI_MAG1] != ELFMAG1 ||
+	    header->e_ident[EI_MAG2] != ELFMAG2 ||
+	    header->e_ident[EI_MAG3] != ELFMAG3)
+		dprintf(STDERR_FILENO, "Error: Not an ELF file\n"), exit(98);	
 	printf("ELF Header:\n");
-	print_magic(header->e_ident);
+	printf("  Magic:   %02x %02x %02x %02x\n",
+	       header->e_ident[EI_MAG0], header->e_ident[EI_MAG1],
+	       header->e_ident[EI_MAG2], header->e_ident[EI_MAG3]);
 	print_class(header->e_ident);
 	print_data(header->e_ident);
 	print_version(header->e_ident);
