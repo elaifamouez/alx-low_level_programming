@@ -14,9 +14,9 @@ dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 exit(97);
 }
 }
+
 /**
  * check100 - checks that file descriptors were closed properly
- *
  * @fd: file descriptor
  *
  * Return: void
@@ -32,6 +32,7 @@ dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 exit(100);
 }
 }
+
 /**
  * main - Copies the contents of a file to another file.
  * @argc: The number of arguments supplied to the program.
@@ -57,12 +58,12 @@ dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 exit(98);
 }
 _file2 = open(argv[2], O_TRUNC | O_CREAT | O_WRONLY, 0664);
-_read = read(_file1, buffer, 1024);
-while (_read > 0)
+while ((_read = read(_file1, buffer, 1024)) > 0)
 {
 if (_file2 == -1 || (write(_file2, buffer, _read) != _read))
 {
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+exit(99);
 }
 }
 if (_read == -1)
