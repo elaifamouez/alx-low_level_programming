@@ -41,3 +41,5 @@ ALX  Low Level Programming
 0x14. C - Bit manipulation -- Working with bitwise operators.
 
 0x15. C - File I/O -- Working with  I/O system calls.
+
+0x17. C - Doubly linked lists -- Working with Doubly linked lists.
