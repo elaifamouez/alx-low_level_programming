@@ -43,3 +43,5 @@ ALX  Low Level Programming
 0x15. C - File I/O -- Working with  I/O system calls.
 
 0x17. C - Doubly linked lists -- Working with Doubly linked lists.
+
+0x18. C - Dynamic libraries -- Working with Dynamic library and Static library.
