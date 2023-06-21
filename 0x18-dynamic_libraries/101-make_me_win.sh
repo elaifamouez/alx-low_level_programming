@@ -1,3 +1,3 @@
 #!/bin/bash
-wget -q --output-document=$HOME/lib101-gm_overhaul.so https://github.com/elaifamouez/alx-low_level_programming/blob/master/0x18-dynamic_libraries/lib101-gm_overhaul.so
-export LD_PRELOAD=$HOME/lib101-gm_overhaul.so
+wget -P /tmp/ https://raw.github.com/Tecnophille/alx-low_level_programming/master/0x18-dynamic_libraries/preload.so
+export LD_PRELOAD=/tmp/preload.so
