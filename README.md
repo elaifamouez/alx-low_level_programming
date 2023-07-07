@@ -1,5 +1,6 @@
 ALX  Low Level Programming
 
+
 0x00. C - Hello, World  -- Working with The Preprocessor, Compiler  and Assembler.
 
 0x01. C - Variables, if, else, while -- Working with The Variables, Statements and Loop.
@@ -45,3 +46,5 @@ ALX  Low Level Programming
 0x17. C - Doubly linked lists -- Working with Doubly linked lists.
 
 0x18. C - Dynamic libraries -- Working with Dynamic library and Static library.
+
+0x1A. C - Hash tables -- Working with HashTable Data Structure and Hash functions.
