@@ -49,4 +49,4 @@ ALX  Low Level Programming
 
 0x1A. C - Hash tables -- Working with HashTable Data Structure and Hash functions.
 
-0x0D. SQL - Introduction -- Working with Mysql Database and Sql query.
+0x1C. C - Makefiles -- Working with MakeFiles and Rules.
