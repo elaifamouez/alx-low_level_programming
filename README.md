@@ -50,3 +50,5 @@ ALX  Low Level Programming
 0x1A. C - Hash tables -- Working with HashTable Data Structure and Hash functions.
 
 0x1C. C - Makefiles -- Working with MakeFiles and Rules.
+
+0x1E. C - Search Algorithms -- Working with Search Algorithme And their complexity.
